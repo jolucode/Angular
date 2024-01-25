@@ -1,0 +1,33 @@
+<div class="custom-wrapper">
+  <div class="container">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-md-6 offset-md-3">
+        <div class="container text-center">
+          <img src="../../../assets/registrar.png" width="100" height="100">
+        </div>
+
+        <h1 class="text-center">Regístrate aquí</h1>
+
+        <form (ngSubmit)="formSubmit()">
+          <div class="custom-form-field">
+            <input required [(ngModel)]="user.username" name="username" placeholder="Digite su nombre de usuario">
+          </div>
+
+          <div class="custom-form-field">
+            <input required [(ngModel)]="user.password" name="password" type="password" placeholder="Digite su contraseña">
+          </div>
+
+          <div class="custom-form-field">
+            <input required [(ngModel)]="user.email" name="email" type="email" placeholder="Digite su email">
+          </div>
+
+          <div class="container text-center">
+            <button class="custom-button" type="submit">Registrar</button>
+            <button type="reset" style="margin-left: 0px;" class="custom-button">Limpiar</button>
+          </div>
+        </form>
+        <br><br><br>
+      </div>
+    </div>
+  </div>
+</div>
