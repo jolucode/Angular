@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Ruc</th>
+      <th scope="col">BusinessName</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Email</th>
+      <th scope="col">State</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers ; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ customer.ruc }}</td>
+      <td>{{ customer.businessName }}</td>
+      <td>{{ customer.phone }}</td>
+      <td>{{ customer.email }}</td>
+      <td>{{ customer.status ? "Activado" : "Desactivado" }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-success"
+          [ngClass]="customer.status ? 'btn-desactivar' : 'btn-activar'"
+          (click)="cambiarEstado(customer.id)"
+        >
+          {{ customer.status ? "Desactivar" : "Activar" }}
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

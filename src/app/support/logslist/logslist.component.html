@@ -1,0 +1,34 @@
+
+
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Ruc</th>
+        <th scope="col">BusinessName</th>
+        <th scope="col">Request</th>
+        <th scope="col">ThirdPartyResponseXml</th>
+        <th scope="col">RequestDate</th>
+        <th scope="col">ResponseDate</th>
+        <th scope="col">ThirdPartyServiceInvocationDate</th>
+        <th scope="col">ThirdPartyServiceResponseDate</th>
+        <th scope="col">ObjectTypeAndDocEntry</th>
+        <th scope="col">SeriesAndCorrelative</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of logs ; let i = index">
+        <th scope="row">{{ i + 1 }}</th>
+        <td>{{log.ruc}}</td>
+        <td>{{log.businessName}}</td>
+        <td>{{log.request}}</td>
+        <td>{{log.thirdPartyResponseXml}}</td>
+        <td>{{log.requestDate}}</td>
+        <td>{{log.responseDate}}</td>
+        <td>{{log.thirdPartyServiceInvocationDate}}</td>
+        <td>{{log.thirdPartyServiceResponseDate}}</td>
+        <td>{{log.objectTypeAndDocEntry}}</td>
+        <td>{{log.seriesAndCorrelative}}</td>
+      </tr>
+    </tbody>
+  </table>
