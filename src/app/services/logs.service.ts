@@ -26,12 +26,12 @@ export class LogsService {
       'Authorization': this.getAuthorizationHeader()
     });
 
-    return this.httpClient.get<Log[]>(`https://back2-3a06fb2e3a92.herokuapp.com/logs`, { headers });
+    return this.httpClient.get<Log[]>(`https://finance-28012024-b9baa90dd280.herokuapp.com/logs`, { headers });
   }
 
 
   /*public list(): Observable<Customer[]> {
-    return this.httpClient.get<Customer[]>(`http://localhost:8111/customers/all`);
+    return this.httpClient.get<Customer[]>(`https://finance-28012024-b9baa90dd280.herokuapp.com/customers/all`);
   }
 
   public changeState(id: number): Observable<Customer> {

@@ -3,6 +3,8 @@ export class Log {
     ruc: string;
     businessName: string;
     request: string;
+    response: string;
+    thirdPartyRequestXml: string;
     thirdPartyResponseXml: string;
     requestDate: string;
     responseDate: string;
@@ -10,11 +12,13 @@ export class Log {
     thirdPartyServiceResponseDate: string;
     objectTypeAndDocEntry: string;
     seriesAndCorrelative: string;
-  
+
     constructor(
       ruc: string,
       businessName: string,
       request: string,
+      response: string,
+      thirdPartyRequestXml: string,
       thirdPartyResponseXml: string,
       requestDate: string,
       responseDate: string,
@@ -26,6 +30,8 @@ export class Log {
       this.ruc = ruc;
       this.businessName = businessName;
       this.request = request;
+      this.response = response;
+      this.thirdPartyRequestXml = thirdPartyRequestXml;
       this.thirdPartyResponseXml = thirdPartyResponseXml;
       this.requestDate = requestDate;
       this.responseDate = responseDate;

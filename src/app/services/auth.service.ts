@@ -7,7 +7,7 @@ import { AuthResponse } from '../auth/interfaces/interfaces';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://back2-3a06fb2e3a92.herokuapp.com';
+  private apiUrl = 'https://finance-28012024-b9baa90dd280.herokuapp.com';
   private userPayload: any;
   constructor(private http: HttpClient) {}
 

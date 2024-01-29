@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class CustomerService {
 
-  customertURL = `https://back2-3a06fb2e3a92.herokuapp.com`;
+  customertURL = `https://finance-28012024-b9baa90dd280.herokuapp.com`;
 
   constructor(private httpClient: HttpClient,  private authService: AuthService) { }
 

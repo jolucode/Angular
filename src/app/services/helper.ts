@@ -1,2 +1,2 @@
-let baseUrl = 'https://back2-3a06fb2e3a92.herokuapp.com/';
+let baseUrl = 'https://finance-28012024-b9baa90dd280.herokuapp.com/';
 export default baseUrl;
