@@ -1,0 +1,85 @@
+<app-header></app-header>
+
+<p-table
+  #customerList
+  [value]="customers"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  [loading]="loading"
+  [rowsPerPageOptions]="[5,10, 25, 50]"
+  styleClass="p-datatable-customers p-datatable-gridlines"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} customers"
+  [globalFilterFields]="['ruc', 'businessName', 'phone', 'email']"
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+      <span class="p-input-icon-left p-ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="
+            customerList.filterGlobal($any($event.target).value, 'contains')
+          "
+          placeholder="Buscar..."
+        />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Id</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Ruc</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">BusinessName</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Phone</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Email</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">State <p-columnFilter type="boolean" field="status"></p-columnFilter></div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Action</div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-customers let-rowIndex="rowIndex">
+    <tr>
+      <td>{{ rowIndex + 1 }}</td>
+      <td>
+        {{ customers.ruc }}
+      </td>
+      <td>
+        {{ customers.businessName }}
+      </td>
+      <td>
+        {{ customers.phone }}
+      </td>
+      <td>
+        {{ customers.email }}
+      </td>
+      <td>
+        {{ customers.status ? "Activado" : "Desactivado" }}
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-success"
+          [ngClass]="customers.status ? 'btn-desactivar' : 'btn-activar'"
+          (click)="cambiarEstado(customers.id)"
+        >
+          {{ customers.status ? "Desactivar" : "Activar" }}
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

@@ -1,0 +1,24 @@
+
+<div class="grid h-screen align-items-center  justify-content-center custom-background">
+    <div class="login-container">
+      <form class="login-form"
+      (ngSubmit)="login()" [formGroup]="loginForm" name="loginForm">
+        <h2>Iniciar sesión</h2>
+        <div class="centrar"><div class="logo">
+        </div></div>
+        <label for="username">Usuario:</label>
+        <input type="text" formControlName="userName" id="username" required>
+        <label for="password">Contraseña:</label>
+        <input type="password" formControlName="password" id="password" required>
+        <div class="pie-form text-center">
+          
+        <p-button (click)="crearcuenta()"label="Crear cuenta" [link]="true"></p-button>
+
+      </div>
+        <div class="centrar"><button type="submit" pButton pRipple label="Ingresar" class="p-button-success"></button></div>
+      </form>
+    </div>
+  </div>
+  <p-toast></p-toast>
+
+

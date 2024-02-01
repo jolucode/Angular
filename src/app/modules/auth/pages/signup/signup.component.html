@@ -1,0 +1,36 @@
+<div class="grid h-screen align-items-center  justify-content-center custom-background">
+
+<div class="custom-wrapper">
+    <div class="container">
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-md-6 offset-md-3">
+          <div class="centrar"><div class="logo">
+          </div></div>
+  
+          <h2 class="text-center">Regístrate aquí</h2>
+  
+          <form (ngSubmit)="formSubmit()">
+            <div class="custom-form-field">
+              <input  name="username" placeholder="Digite su nombre de usuario">
+            </div>
+  
+            <div class="custom-form-field">
+              <input  name="password" type="password" placeholder="Digite su contraseña">
+            </div>
+  
+            <div class="custom-form-field">
+              <input name="email" type="email" placeholder="Digite su email">
+            </div>
+  
+            <div class="container text-center">
+              <div class="centrar"><p-button label="Registrar" class="p-button-success" ></p-button></div>
+              <div class="centrar"><p-button label="Limpiar" class="p-button-success"></p-button></div>
+              <div class="centrar"><p-button (click)="regresar()" label="Regresar" class="p-button-success"> </p-button></div>
+            </div>
+
+          </form>
+          <br><br><br>
+        </div>
+      </div>
+    </div>
+  </div> </div>

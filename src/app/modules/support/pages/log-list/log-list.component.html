@@ -1,0 +1,156 @@
+<app-header></app-header>
+
+<p-table
+  #logList
+  [value]="logs"
+  [rows]="10"
+  [showCurrentPageReport]="true"
+  [loading]="loading"
+  [rowsPerPageOptions]="[10, 25, 50]"
+  styleClass="p-datatable-customers p-datatable-gridlines"
+  [paginator]="true"
+  currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} logs"
+  [globalFilterFields]="[
+    'id',
+    'ruc',
+    'businessName',
+    'response',
+    'objectTypeAndDocEntry',
+    'seriesAndCorrelative'
+  ]"
+>
+  <ng-template pTemplate="caption">
+    <div class="p-d-flex">
+      <span class="p-input-icon-left p-ml-auto">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="logList.filterGlobal($any($event.target).value, 'contains')"
+          placeholder="Buscar..."
+        />
+      </span>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Id</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Ruc</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">BusinessName</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Request</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Response</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Request Sunat</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Response Sunat</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">RequestDate</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">responseDate</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">RequestDateSunat</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">ResponseDateSunat</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">
+          ObjectTypeAndDocEntry
+        </div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">
+          SeriesAndCorrelative
+        </div>
+      </th>
+    </tr></ng-template
+  >
+  <ng-template pTemplate="body" let-logs let-rowIndex="rowIndex">
+    <tr>
+      <td>
+        {{ rowIndex + 1 }}
+      </td>
+      <td>
+        {{ logs.ruc }}
+      </td>
+      <td>
+        {{ logs.businessName }}
+      </td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-eye"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="seeXmlDialog(logs.request, 'json', 'REQUEST')"
+        ></button>
+      </td>
+      <td>
+        {{ logs.response }}
+      </td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-eye"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="
+            seeXmlDialog(logs.thirdPartyRequestXml, 'xml', 'SUNAT XLM REQUEST')
+          "
+        ></button>
+      </td>
+      <td>
+        <!-- {{ logs.thirdPartyResponseXml }} -->
+        RespuestaZip
+      </td>
+      <td>
+        {{ logs.requestDate | date : "dd-MM-yyyy HH:mm:ss" }}
+      </td>
+      <td>
+        {{ logs.responseDate | date : "dd-MM-yyyy HH:mm:ss" }}
+      </td>
+      <td>
+        {{
+          logs.thirdPartyServiceInvocationDate | date : "dd-MM-yyyy HH:mm:ss"
+        }}
+      </td>
+      <td>
+        {{ logs.thirdPartyServiceResponseDate | date : "dd-MM-yyyy HH:mm:ss" }}
+      </td>
+      <td>
+        {{ logs.objectTypeAndDocEntry }}
+      </td>
+      <td>
+        {{ logs.seriesAndCorrelative }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="xmlRequestDialog"
+  [style]="{ width: '80%' }"
+  [header]="dialogTittle"
+  [modal]="true"
+  styleClass="p-fluid"
+>
+  <ng-template pTemplate="content">
+    <div class="code-viewer">
+      <textarea highlight-js [lang]="language">{{ actualCodeToSee }}</textarea>
+    </div>
+  </ng-template>
+</p-dialog>
