@@ -3,17 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthResponse } from '../auth/interfaces/interfaces';
+import baseUrl from './helper';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'https://finance-28012024-b9baa90dd280.herokuapp.com';
   private userPayload: any;
   constructor(private http: HttpClient) {}
 
 
   login( username: string, password: string ): Observable<any>{
-    const url = `${ this.apiUrl }/login`;
+    const url = `${baseUrl }/login`;
     const body = {username, password};
 
     return this.http.post<AuthResponse>(url, body)
@@ -47,9 +47,8 @@ export class AuthService {
 
   getRoleFromToken(){
     this.userPayload = this.decodedToken();
-
     if(this.userPayload)
-    return this.userPayload.role;
+    return this.userPayload.roles[0];
   }
 
   // You may want to implement other authentication-related methods (e.g., logout, check authentication status) here.

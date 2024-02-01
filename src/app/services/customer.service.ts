@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Customer } from '../models/customer';
 import { AuthService } from './auth.service';
+import baseUrl from './helper';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
 
-  customertURL = `https://finance-28012024-b9baa90dd280.herokuapp.com`;
 
   constructor(private httpClient: HttpClient,  private authService: AuthService) { }
 
@@ -17,7 +17,6 @@ export class CustomerService {
   // Obtén el token de tu fuente de autenticación (por ejemplo, AuthService)
   private getAuthorizationHeader(): string {
     const token = this.authService.getToken();
-    console.log(token)
     return `Bearer ${token}`;
   }
 
@@ -26,7 +25,7 @@ export class CustomerService {
       'Authorization': this.getAuthorizationHeader()
     });
 
-    return this.httpClient.get<Customer[]>(this.customertURL + `/customers`, { headers });
+    return this.httpClient.get<Customer[]>(baseUrl + `/customers`, { headers });
   }
 
   public changeState(id: number): Observable<Customer> {
@@ -34,9 +33,8 @@ export class CustomerService {
       'Authorization': this.getAuthorizationHeader()
     });
 
-    console.log(id);
 
-    return this.httpClient.patch<Customer>( this.customertURL + `/customers/${id}`, {}, { headers });
+    return this.httpClient.patch<Customer>( baseUrl+ `/customers/${id}`, {}, { headers });
   }
 
 }

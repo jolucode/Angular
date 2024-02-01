@@ -35,13 +35,11 @@ export class LoginComponent {
 
   login(): void {
     const credentials =  this.loginForm.getRawValue();
-    console.log(credentials);
     this.authService.login(credentials.userName, credentials.password).subscribe({
       next:(res) => {
 
         //Decodificar token
         const tokenPayload = this.authService.decodedToken();
-        console.log(tokenPayload);
 
         //Mostrar mensaje de exitos
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Inicio de sesion exitosa!!' });

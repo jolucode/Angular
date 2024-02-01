@@ -19,7 +19,6 @@ export class SignupComponent {
   constructor(private userService:UserService) { }
 
   formSubmit(){
-    console.log(this.user);
     if(this.user.username == '' || this.user.username == null){
       /*this.snack.open('El nombre de usuario es requerido !!','Aceptar',{
         duration : 3000,
@@ -31,10 +30,8 @@ export class SignupComponent {
 
     this.userService.añadirUsuario(this.user).subscribe(
       (data) => {
-        console.log(data);
         //Swal.fire('Usuario guardado','Usuario registrado con exito en el sistema','success');
       },(error) => {
-        console.log(error);
         //this.snack.open('Ha ocurrido un error en el sistema !!','Aceptar',{
           alert('Ha ocurrido un error en el sistema');
           duration : 3000

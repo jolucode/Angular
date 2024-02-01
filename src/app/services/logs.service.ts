@@ -17,7 +17,6 @@ export class LogsService {
   // Obtén el token de tu fuente de autenticación (por ejemplo, AuthService)
   private getAuthorizationHeader(): string {
     const token = this.authService.getToken();
-    console.log(token)
     return `Bearer ${token}`;
   }
 
