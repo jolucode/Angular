@@ -1,4 +1,22 @@
-<h3>Ventura Soluciones S.A.C.</h3>
+
 <div class="header p-d-flex p-jc-between background">
-    <p-button label="Cerrar sesión"  severity="danger" icon="pi pi-sign-out"  iconPos="right" (onClick)="logOut()"></p-button>
+  <h1 class="title">{{ text }}</h1>
+    <p-button label="Cerrar sesión" class="button" severity="danger" icon="pi pi-sign-out"  iconPos="right" (onClick)="showModalLogOut()"></p-button>
 </div>
+<p-dialog
+  [(visible)]="showModal"
+  [style]="{ width: '35%' }"
+  [modal]="true"
+  styleClass="p-fluid"
+  [showHeader]="false"
+>
+<div class="container">
+    <div class="warning"></div>
+    <h1>¿Desea salir de la sesión?</h1>
+    <h4>No hay problema puede volver cuando desee.</h4>
+    <p-button class="buttons" label="¡Sí, salir!"  [rounded]="true" (onClick)="logOut()"></p-button>
+    <p-button class="buttons" label="Cancelar"  [rounded]="true" severity="danger" (onClick)="hideModalLogOut()"></p-button>    
+ 
+</div>
+    
+</p-dialog>

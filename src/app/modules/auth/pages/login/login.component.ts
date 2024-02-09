@@ -24,8 +24,8 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
-      userName: ['acarranza@vsperu.com', [Validators.required]],
-      password: ['123', Validators.required],
+      userName: ['', [Validators.required]],
+      password: ['', Validators.required],
     });
   }
 

@@ -13,7 +13,7 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextModule } from 'primeng/inputtext';
 import { SharedModule } from '../../shared/shared.module';
-
+import { JsonFormatPipe } from '../../helpers/json-format.pipe';
 @NgModule({
   declarations: [LogslistComponent],
   imports: [
@@ -29,7 +29,8 @@ import { SharedModule } from '../../shared/shared.module';
     DropdownModule,
     ButtonModule,
     InputTextModule,
-    SharedModule
+    SharedModule,
+    JsonFormatPipe,
   ],
 })
 export class SupportModule {}

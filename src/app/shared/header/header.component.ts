@@ -8,11 +8,19 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent { 
-  
-
+  showModal!: boolean;
+  @Input() text!: string;
   constructor(private router: Router,
               private authService: AuthService){}
 
+  showModalLogOut(
+    ): void {
+    this.showModal = true;
+  }         
+  hideModalLogOut(
+    ): void {
+    this.showModal = false;
+  }      
   logOut(){
     this.authService.signOut();
     this.router.navigate(['/login']);    

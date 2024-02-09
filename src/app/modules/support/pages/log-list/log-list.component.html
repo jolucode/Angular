@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header [text]="'Reporte de Logs'"></app-header>
 
 <p-table
   #logList
@@ -16,7 +16,11 @@
     'businessName',
     'response',
     'objectTypeAndDocEntry',
-    'seriesAndCorrelative'
+    'seriesAndCorrelative',
+    'requestDate',
+    'responseDate',
+    'thirdPartyServiceInvocationDate',
+    'thirdPartyServiceResponseDate'
   ]"
 >
   <ng-template pTemplate="caption">
@@ -41,40 +45,72 @@
         <div class="p-d-flex p-jc-between p-ai-center">Ruc</div>
       </th>
       <th>
-        <div class="p-d-flex p-jc-between p-ai-center">BusinessName</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">Request</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">Response</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">Request Sunat</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">Response Sunat</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">RequestDate</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">responseDate</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">RequestDateSunat</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">ResponseDateSunat</div>
-      </th>
-      <th>
-        <div class="p-d-flex p-jc-between p-ai-center">
-          ObjectTypeAndDocEntry
+        <div class="p-d-flex p-jc-between p-ai-center" style="min-width: 185px">
+          Razón Social
         </div>
       </th>
       <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Petición Componente</div>
+      </th>
+      <th>
         <div class="p-d-flex p-jc-between p-ai-center">
-          SeriesAndCorrelative
+          Respuesta Componente
+        </div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Petición Sunat</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center">Respuesta Sunat</div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center" style="min-width: 140px">
+          Fecha de petición
+          <p-columnFilter
+            type="date"
+            field="requestDate"
+            display="menu"
+          ></p-columnFilter>
+        </div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center" style="min-width: 140px">
+          Fecha de respuesta
+          <p-columnFilter
+            type="date"
+            field="responseDate"
+            display="menu"
+          ></p-columnFilter>
+        </div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center" style="min-width: 140px">
+          Fecha peticion Sunat
+          <p-columnFilter
+            type="date"
+            field="thirdPartyServiceInvocationDate"
+            display="menu"
+          ></p-columnFilter>
+        </div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center" style="min-width: 140px">
+          Fecha respuesta Sunat
+          <p-columnFilter
+            type="date"
+            field="thirdPartyServiceResponseDate"
+            display="menu"
+          ></p-columnFilter>
+        </div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center" style="min-width: 100px">
+          Objeto SAP & DocEntry
+        </div>
+      </th>
+      <th>
+        <div class="p-d-flex p-jc-between p-ai-center" style="width: 140px">
+          Serie y correlativo
         </div>
       </th>
     </tr></ng-template
@@ -96,11 +132,15 @@
           pRipple
           icon="pi pi-eye"
           class="p-button-rounded p-button-success p-mr-2"
-          (click)="seeXmlDialog(logs.request, 'json', 'REQUEST')"
+          (click)="
+            seeXmlDialog(
+              logs.request,
+              'json',
+              'Petición Componente',
+              (needFormat = true)
+            )
+          "
         ></button>
-      </td>
-      <td>
-        {{ logs.response }}
       </td>
       <td>
         <button
@@ -109,13 +149,37 @@
           icon="pi pi-eye"
           class="p-button-rounded p-button-success p-mr-2"
           (click)="
-            seeXmlDialog(logs.thirdPartyRequestXml, 'xml', 'SUNAT XLM REQUEST')
+            seeXmlDialog(
+              logs.response,
+              'json',
+              'Respuesta Componente',
+              (needFormat = true)
+            )
+          "
+        ></button>
+      </td>
+      <td>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-eye"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="
+            seeXmlDialog(logs.thirdPartyRequestXml, 'xml', 'Petición Sunat')
           "
         ></button>
       </td>
       <td>
         <!-- {{ logs.thirdPartyResponseXml }} -->
-        RespuestaZip
+        <button
+          pButton
+          pRipple
+          icon="pi pi-eye"
+          class="p-button-rounded p-button-success p-mr-2"
+          (click)="
+            seeXmlDialog(logs.thirdPartyResponseXml, 'xml', 'Respuesta Sunat')
+          "
+        ></button>
       </td>
       <td>
         {{ logs.requestDate | date : "dd-MM-yyyy HH:mm:ss" }}
@@ -150,7 +214,34 @@
 >
   <ng-template pTemplate="content">
     <div class="code-viewer">
-      <textarea highlight-js [lang]="language">{{ actualCodeToSee }}</textarea>
+      <p-button
+        *ngIf="!mostrarMensaje"
+        icon="pi pi-copy"
+        class="copy-button"
+        (click)="copyCode()"
+      ></p-button>
+      <div
+        *ngIf="mostrarMensaje"
+        class="copied-message"
+        [ngClass]="actualCodeToSee ? 'success' : 'failed'"
+      >
+        {{ actualCodeToSee ? "¡Texto copiado!" : "No hay nada para copiar" }}
+      </div>
+      <textarea
+        *ngIf="needFormat && actualCodeToSee"
+        highlight-js
+        [lang]="language"
+        >{{ actualCodeToSee | jsonFormat }}</textarea
+      >
+      <textarea
+        *ngIf="!needFormat && actualCodeToSee"
+        highlight-js
+        [lang]="language"
+        >{{ actualCodeToSee }}</textarea
+      >
+      <textarea *ngIf="!actualCodeToSee" highlight-js [lang]="language">
+No hay nada para mostrar</textarea
+      >
     </div>
   </ng-template>
 </p-dialog>

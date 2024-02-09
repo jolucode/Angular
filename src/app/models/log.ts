@@ -6,10 +6,10 @@ export class Log {
     response: string;
     thirdPartyRequestXml: string;
     thirdPartyResponseXml: string;
-    requestDate: string;
-    responseDate: string;
-    thirdPartyServiceInvocationDate: string;
-    thirdPartyServiceResponseDate: string;
+    requestDate: Date;
+    responseDate: Date;
+    thirdPartyServiceInvocationDate: Date;
+    thirdPartyServiceResponseDate: Date;
     objectTypeAndDocEntry: string;
     seriesAndCorrelative: string;
 
@@ -20,10 +20,10 @@ export class Log {
       response: string,
       thirdPartyRequestXml: string,
       thirdPartyResponseXml: string,
-      requestDate: string,
-      responseDate: string,
-      thirdPartyServiceInvocationDate: string,
-      thirdPartyServiceResponseDate: string,
+      requestDate: Date,
+      responseDate: Date,
+      thirdPartyServiceInvocationDate: Date,
+      thirdPartyServiceResponseDate: Date,
       objectTypeAndDocEntry: string,
       seriesAndCorrelative: string
     ) {

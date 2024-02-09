@@ -16,7 +16,8 @@ th {
 /* Estilos para las celdas de datos */
 td {
   border: 1px solid #ddd;
-  padding: 10px;
+  padding: 5px 10px;
+  text-align: center;
 }
 
 /* Estilos para las filas impares */
@@ -43,6 +44,43 @@ tbody tr:nth-child(odd) {
 
 .code-viewer {
   max-height: 75vh;
+  min-height: 50vh;
   overflow: auto;
   display: grid;
+}
+.copied-message {
+  font-size: large;
+  padding: 10px;
+  border-radius: 5px;
+  position: fixed; /* Posición absoluta para que se coloque sobre el botón */
+  top: 70px;
+  right: 50px;
+  animation: fadeOut 1.5s ease-in-out;
+}
+.success {
+  background-color: #96dc98;
+}
+.failed {
+  background-color: #fbb2b2;
+}
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+::ng-deep .p-dialog-header {
+  padding: 16px 24px;
+}
+
+::ng-deep pre {
+  margin: 0;
+  padding: 1rem;
+}
+.copy-button {
+  position: fixed; /* Posición absoluta para que se coloque sobre el botón */
+  top: 70px;
+  right: 50px;
 }
